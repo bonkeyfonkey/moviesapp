@@ -35,6 +35,7 @@ Moviesapp::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
+  #If user uses SMTP
   config.action_mailer.delivery_method = :smtp
 	config.action_mailer.smtp_settings = {  
 	     :enable_starttls_auto => true,
@@ -42,7 +43,7 @@ Moviesapp::Application.configure do
          :port           => 587, 
          :domain         => 'www.example.com', 
          :authentication => :plain,
-         :user_name => ‘yourgmailaddress',
+         :user_name => 'yourgmailaddress',
          :password => 'yourpassword'
-
+         }
 end

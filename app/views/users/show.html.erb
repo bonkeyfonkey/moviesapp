@@ -30,7 +30,22 @@
   <%= @user.age %>
   </p>
   
+<p>Address:
+<%= @user.address %></p>
+  
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@user.latitude}%2C#{@user.longitude}" %>
 
+<h3>How far from DIT </h3>
+<%= @user.distance_to("DIT Aungier St Dublin")%>
+</br>
 
+<h3>Nearby Customers</h3>
+<ul>
+<% @user.nearbys(10).each do |c| %>
+    <li><%= link_to c.address, c %> (<%= c.distance.round(2) %> miles)</li>
+  <% end %>
+</ul>
+
+</br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -1,43 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Moviesapp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <title><%= @title %></title>  
+  <%= stylesheet_link_tag  "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css",  "application", :media => "all" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<div id="banner">
-	<%= image_tag("dit.gif", :size => "100x50") %>
-	<%= @page_title || "Movies We Love" %>
-</div>
-
-<div id="nav">
+	<div id= "banner">
+		<%= image_tag("ditlogo.gif", size: "100x100") %>
+	
+	</div>
+	<div id="nav">
     <ul>
-	<ul>
-	<% if !signed_in? %>
+	
+	  <% if !signed_in? %>
 		<li><%= link_to "Sign In", signin_path %></li>		
 	<% else %>
-		<li>Signed in as <%= @current_user.name %></li>
+		<li>Signed in as <%= @current_user.login %></li>
 		<li><%= link_to "Sign Out", signout_path %></li>
-
-	<%end %>
-
-      <li><%= link_to "About Us", about_path %></li>
+	<% end %>
+      <li><%= link_to "About", about_path %></li>
       <li><%= link_to "Movie News", 'http://oscar.go.com/nominees' %></li>
       <li><%= mail_to "mary.regan@dit.ie", "Contact us" %></li>	
       <li><%= link_to "Movies", movies_path%></li>
-	  <li><%= link_to "Genres", genres_path%></li>
-    </ul>
-</div>
+	</ul>
+	</div>
 
-
+	
 <%= yield %>
-
-<p id="notice"><%= notice %></p>
-<h3> This is the website for DT354-3</h3>
-
-
+<p style="color: red"><%= flash[:error] %></p>
 </body>
 </html>
